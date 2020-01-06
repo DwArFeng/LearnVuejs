@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:v-bind="http://www.w3.org/1999/xhtml">
+<head>
+  <meta charset="UTF-8">
+  <title>Title</title>
+</head>
+<body>
+
+<div id="app">
+  <!--  <h2 v-bind:style="{key(属性名): value(属性值)}">{{message}}</h2>-->
+  <h2 v-bind:style="{fontSize: finalSize + 'px', color: finalColor}">{{message}}</h2>
+</div>
+
+<script src="../js/vue.js"></script>
+<script>
+  const app = new Vue({
+    el: '#app',
+    data: {
+      message: 'Rae是我儿子！',
+      finalSize: 50,
+      finalColor: 'red'
+    }
+  })
+</script>
+
+</body>
+</html>

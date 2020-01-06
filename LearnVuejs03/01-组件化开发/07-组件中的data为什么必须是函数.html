@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:v-on="http://www.w3.org/1999/xhtml">
+<head>
+  <meta charset="UTF-8">
+  <title>Title</title>
+</head>
+<body>
+
+<div id="app">
+  <!-- 在示例中可以看见，三个组件使用不同的变量，这就说明了组件示例使用的是单独的变量空间。 -->
+  <!-- 所以data必须是函数，这样返回值返回的就是不同的data变量了。 -->
+  <counter></counter>
+  <counter></counter>
+  <counter></counter>
+</div>
+
+<!-- 通过案例进行解释: 将计数器封装成组件 -->
+<template id="counter">
+  <div>
+    <h2>当前计数:{{count}}</h2>
+    <button v-on:click="incr">+</button>
+    <button v-on:click="decr">-</button>
+  </div>
+</template>
+
+<script src="../js/vue.js"></script>
+<script>
+  Vue.component('counter', {
+    template: '#counter',
+    data: function () {
+      return {
+        count: 0
+      }
+    },
+    methods: {
+      incr: function () {
+        console.log('计数器自加');
+        this.count++;
+      },
+      decr: function () {
+        console.log('计数器自减');
+        this.count--;
+      }
+    }
+  });
+
+  const app = new Vue({
+    el: '#app',
+    data: {
+      message: 'Rae是我儿子！'
+    }
+  })
+</script>
+
+</body>
+</html>

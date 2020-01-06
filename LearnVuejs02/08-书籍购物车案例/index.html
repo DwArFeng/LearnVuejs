@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:v-bind="http://www.w3.org/1999/xhtml" xmlns:v-on="http://www.w3.org/1999/xhtml">
+<head>
+  <meta charset="UTF-8">
+  <title>Title</title>
+  <link href="style.css" rel="stylesheet">
+  <style>
+    [v-cloak] {
+      display: none;
+    }
+  </style>
+</head>
+<body>
+
+<div id="app" v-cloak>
+  <div v-if="books.length > 0">
+    <table>
+      <thead>
+      <tr>
+        <th></th>
+        <th>书籍名称</th>
+        <th>出版日期</th>
+        <th>价格</th>
+        <th>购买数量</th>
+        <th>操作</th>
+      </tr>
+      </thead>
+      <tbody>
+      <tr v-bind:key="item.id" v-for="(item, index) in books">
+        <td>{{index+1}}</td>
+        <td>{{item.name}}</td>
+        <td>{{item.date}}</td>
+        <td>{{item.price | formatPrice}}</td>
+        <td>
+          <button v-bind:disabled="isDecrDisabled(item)" v-on:click="decr(item)">-</button>
+          {{item.count}}
+          <button v-on:click="incr(item)">+</button>
+        </td>
+        <td>
+          <button v-on:click="removeHandler(index)">移除</button>
+        </td>
+      </tr>
+      </tbody>
+    </table>
+    <h3>总价格: {{price | formatPrice}}</h3>
+  </div>
+  <div v-else>
+    <h3>购物车为空</h3>
+  </div>
+</div>
+
+<script src="../js/vue.js"></script>
+<script src="main.js"></script>
+
+</body>
+</html>

@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Title</title>
+</head>
+<body>
+
+<div id="app">
+  <!-- 由于html中不支持大小写区分，因此vue将驼峰命名识别为横线分割命名。 -->
+  <cpn v-bind:c-info="info" v-bind:child-something-has-a-very-long-name="somethingHasAVeryLongName"></cpn>
+</div>
+
+<template id="cpn">
+  <div>
+    <!-- 但是在内容中html是区分大小写的，因此在这个位置还是使用驼峰命名法。 -->
+    <h2>{{cInfo}}</h2>
+    <h2>{{childSomethingHasAVeryLongName}}</h2>
+  </div>
+</template>
+
+<script src="../js/vue.js"></script>
+<script>
+  const cpn = {
+    template: '#cpn',
+    props: {
+      cInfo: {
+        type: Object,
+        default: function () {
+          return {}
+        }
+      },
+      childSomethingHasAVeryLongName: {
+        type: String,
+        default: function () {
+          return '';
+        }
+      }
+    }
+  };
+
+  const app = new Vue({
+    el: '#app',
+    data: {
+      info: {
+        name: 'why',
+        age: 18,
+        height: 1.83,
+      },
+      somethingHasAVeryLongName: '这是一个名称很长的变量'
+    },
+    components: {
+      cpn: cpn
+    }
+  })
+</script>
+
+</body>
+</html>

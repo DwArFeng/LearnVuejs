@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Title</title>
+</head>
+<body>
+
+<div id="app">
+  <cpn v-bind:cmovies="movies"></cpn>
+  <cpn v-bind:cmovies="movies"></cpn>
+  <cpn v-bind:cmovies="movies"></cpn>
+</div>
+
+<template id="cpn">
+  <div>
+    <h2>当前可用的电影为: </h2>
+    {{cmovies}}
+  </div>
+</template>
+
+<script src="../js/vue.js"></script>
+<script>
+  //父组件传子组件: props
+  const cpn = {
+    template: '#cpn',
+    data: function () {
+      return {}
+    },
+    // props: ['cmovies']
+    props: {
+      /*
+       * 属性名称: 验证类型。
+       * 可用的验证类型有:
+       *   String
+       *   Number
+       *   Boolean
+       *   Array
+       *   Object
+       *   Date
+       *   Function
+       *   Symbol
+       * 除此之外，还可以提供一些默认值。
+       *   cmovies:{
+       *     //验证类型。
+       *     type: Array,
+       *     //当组件没有进行 v-bind 的时候，这个默认值则会使用。
+       *     //如果类型是对象或者数组时，必须使用工厂函数来创建。
+       *     default: function(){
+       *       return ['你的名字', '千与千寻', '攻壳机动队:无罪', '星际牛仔:天国之扉'];
+       *     },
+       *     //必传属性，如果不传，则会报错。
+       *     required: true
+       *   }
+       */
+      cmovies: Array
+    }
+  };
+
+  const app = new Vue({
+    el: '#app',
+    data: {
+      movies: ['你的名字', '千与千寻', '攻壳机动队:无罪', '星际牛仔:天国之扉']
+    },
+    components: {
+      cpn: cpn
+    }
+  })
+</script>
+
+</body>
+</html>

@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Title</title>
+</head>
+<body>
+
+<!-- type="module"意味着变量不会冲突，将会把文件看成单独的模块，单独的模块有单独的作用域。 -->
+<script src="xiaoming.js" type="module"></script>
+<!-- type="module"意味着变量不会冲突，将会把文件看成单独的模块，单独的模块有单独的作用域。 -->
+<script src="xiaohong.js" type="module"></script>
+<!-- type="module"意味着变量不会冲突，将会把文件看成单独的模块，单独的模块有单独的作用域。 -->
+<!-- 但是，小明开发的两个文件也会被当做两个模块，之间的变量无法共享了。 -->
+<!-- 为了能使两个脚本的变量或者方法共用，需要使用导入和导出的脚本。。 -->
+<script src="xiaoming2.js" type="module"></script>
+</body>
+</html>

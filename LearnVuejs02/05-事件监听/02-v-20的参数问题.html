@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:v-on="http://www.w3.org/1999/xhtml">
+<head>
+  <meta charset="UTF-8">
+  <title>Title</title>
+</head>
+<body>
+
+<div id="app">
+  <!--  事件调用的方法没有参数 -->
+  <button v-on:click="btn1Click">按钮1</button>
+  <!--  效果与前一个按钮一致 -->
+  <button v-on:click="btn1Click()">按钮1</button>
+
+  <!--  在事件定义时，写函数省略了小括号，但是方法本身需要一个参数,
+  这个时候，Vue会默认将浏览器生成的event时间对象作为参数传入到方法。-->
+  <button v-on:click="btn2Click">按钮2</button>
+
+  <!--  方法定义时，我们需要event对象，有事又需要其它参数 -->
+  <!--  在调用方法时，如何手动的获取到浏览器参数的 event 对象: $event -->
+  <button v-on:click="btn3Click('abc', $event)">按钮3</button>
+</div>
+
+<script src="../js/vue.js"></script>
+<script>
+  const app = new Vue({
+    el: '#app',
+    data: {
+      message: 'Rae是我儿子！'
+    },
+    methods: {
+      btn1Click: function () {
+        console.log('btn1 click...')
+      },
+      btn2Click: function (param) {
+        console.log('btn2 click with param ' + param + '...')
+      },
+      btn3Click: function (abc, event) {
+        console.log('btn2 click with param ' + abc + ' and ' + event + '...')
+      }
+    }
+  })
+</script>
+
+</body>
+</html>

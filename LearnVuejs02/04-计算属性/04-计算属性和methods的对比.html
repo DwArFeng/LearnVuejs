@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Title</title>
+</head>
+<body>
+
+<div id="app">
+  <!--  直接拼接: 语法过于繁琐 -->
+  <h2>{{firstName}} {{lastName}}</h2>
+  <!--  调用自定义method: 无缓存，使用几次调用几次 -->
+  <h2>{{getFullName()}}</h2>
+  <h2>{{getFullName()}}</h2>
+  <h2>{{getFullName()}}</h2>
+  <h2>{{getFullName()}}</h2>
+  <!--  属性拼接: 有缓存，相同值只调用一次 -->
+  <h2>{{fullName}}</h2>
+  <h2>{{fullName}}</h2>
+  <h2>{{fullName}}</h2>
+  <h2>{{fullName}}</h2>
+</div>
+
+<script src="../js/vue.js"></script>
+<script>
+  const app = new Vue({
+    el: '#app',
+    data: {
+      firstName: 'Pei',
+      lastName: 'Feng'
+    },
+    methods: {
+      getFullName: function () {
+        console.log('methods方法');
+        return this.firstName + ' ' + this.lastName;
+      }
+    },
+    computed: {
+      fullName: function () {
+        console.log('属性拼接');
+        return this.firstName + this.lastName;
+      }
+    }
+  })
+</script>
+
+</body>
+</html>

@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:v-bind="http://www.w3.org/1999/xhtml" xmlns:v-on="http://www.w3.org/1999/xhtml">
+<head>
+  <meta charset="UTF-8">
+  <title>Title</title>
+</head>
+<body>
+
+<div id="app">
+  <cpn v-bind:num1="num1" v-bind:num2="num2"
+       v-on:num1-change="num1Change" v-on:num2-change="num2Change"></cpn>
+</div>
+
+<!-- 这种方法虽然可以正常运行，但是会报错，Vue官方不推荐这样做，因为这样做会使代码混乱，可以阅读性大大降低。 -->
+<!-- 双向绑定不应该将值绑定到props中。 -->
+<!--<template id="cpn">-->
+<!--  <div>-->
+<!--    <h2>{{num1}}</h2>-->
+<!--    <label>-->
+<!--      <input type="text" v-model="num1">-->
+<!--    </label>-->
+<!--    <h2>{{num2}}</h2>-->
+<!--    <label>-->
+<!--      <input type="text" v-model="num2">-->
+<!--    </label>-->
+<!--  </div>-->
+<!--</template>-->
+
+<template id="cpn">
+  <div>
+    <h2>props: {{num1}}</h2>
+    <h2>delegate: {{delegate_num1}}</h2>
+    <label>
+      <input type="text" v-bind:value="delegate_num1" v-on:input="num1Input($event)">
+    </label>
+    <h2>props: {{num2}}</h2>
+    <h2>delegate: {{delegate_num2}}</h2>
+    <label>
+      <input type="text" v-bind:value="delegate_num2" v-on:input="num2Input($event)">
+    </label>
+  </div>
+</template>
+
+<script src="../js/vue.js"></script>
+<script>
+  const app = new Vue({
+    el: '#app',
+    data: {
+      num1: 1,
+      num2: 0
+    },
+    components: {
+      cpn: {
+        template: '#cpn',
+        props: {
+          num1: {
+            type: Number,
+          },
+          num2: {
+            type: Number
+          }
+        },
+        data: function () {
+          return {
+            delegate_num1: this.num1,
+            delegate_num2: this.num2,
+          }
+        },
+        methods: {
+          num1Input: function (event) {
+            this.delegate_num1 = event.target.value;
+            this.$emit("num1-change", this.delegate_num1);
+          },
+          num2Input: function (event) {
+            this.delegate_num2 = event.target.value;
+            this.$emit("num2-change", this.delegate_num2);
+          }
+        }
+      }
+    },
+    methods: {
+      num1Change: function (num1) {
+        // 方法传入的参数类型默认为 String, 因此直接复制会报类型检查错误。
+        this.num1 = parseInt(num1);
+      },
+      num2Change: function (num2) {
+        this.num2 = parseInt(num2);
+      }
+    }
+  })
+</script>
+
+</body>
+</html>

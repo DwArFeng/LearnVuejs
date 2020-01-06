@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:v-on="http://www.w3.org/1999/xhtml">
+<head>
+  <meta charset="UTF-8">
+  <title>飞行数据记录器</title>
+</head>
+<body>
+
+<div id="app">
+  <h2>当前计数:{{count}}</h2>
+  <!--<button v-on:click="count++">+</button>-->
+  <!--<button v-on:click="count&#45;&#45;">-</button>-->
+  <button v-on:click="incr">+</button>
+  <button v-on:click="decr">-</button>
+</div>
+
+<script src="../js/vue.js"></script>
+<script>
+  const app = new Vue({
+    el: '#app',
+    data: {
+      count: 0
+    },
+    methods: {
+      incr: function () {
+        console.log('计数器自加');
+        this.count++;
+      },
+      decr: function () {
+        console.log('计数器自减');
+        this.count--;
+      }
+    }
+  })
+</script>
+
+</body>
+</html>

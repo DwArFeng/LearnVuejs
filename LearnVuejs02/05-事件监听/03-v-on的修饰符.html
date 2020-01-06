@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:v-on="http://www.w3.org/1999/xhtml">
+<head>
+  <meta charset="UTF-8">
+  <title>Title</title>
+</head>
+<body>
+
+<div id="app">
+  <!-- 1. .stop修饰符的使用 -->
+  <div v-on:click="divClick">
+    <!-- aaaaa 属于div的部分 -->
+    aaaaa
+    <!-- 按钮属于按钮本身 -->
+    <button v-on:click.stop="btnClick">按钮</button>
+  </div>
+
+  <!-- 2. .prevent修饰符的使用(抑制控件的默认侦听) -->
+  <br>
+  <form action="baidu">
+    <input type="submit" v-on:click.prevent="submitClick" value="提交">
+  </form>
+
+  <!-- 3. .[按键名]监听某个键盘按键的点击 -->
+  <br>
+  <input type="text" v-on:keyup.enter="keyUp">
+
+  <!-- 4. .once修饰符的使用 -->
+  <br>
+  <button v-on:click.once="btn2Click">按钮2</button>
+</div>
+
+<script src="../js/vue.js"></script>
+<script>
+  const app = new Vue({
+    el: '#app',
+    data: {
+      message: 'Rae是我儿子！'
+    },
+    methods: {
+      divClick: function () {
+        console.log("div click...");
+      },
+      btnClick: function () {
+        console.log("btn click...");
+      },
+      submitClick: function () {
+        console.log('submit click...');
+      },
+      keyUp: function () {
+        console.log('keyup...');
+      },
+      btn2Click: function () {
+        console.log("btn2 click...");
+      },
+    }
+  })
+</script>
+
+</body>
+</html>

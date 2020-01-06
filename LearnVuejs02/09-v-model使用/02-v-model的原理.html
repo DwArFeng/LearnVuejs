@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:v-bind="http://www.w3.org/1999/xhtml" xmlns:v-on="http://www.w3.org/1999/xhtml">
+<head>
+  <meta charset="UTF-8">
+  <title>Title</title>
+</head>
+<body>
+
+<div id="app">
+  <!-- <input type="text" v-model="message"> -->
+  <!-- 通过使用下述代码，可以起到与双向绑定的同样的效果。 -->
+  <input type="text" v-bind:value="message" v-on:input="handleInput($event)">
+  <h2>{{message}}</h2>
+</div>
+
+<script src="../js/vue.js"></script>
+<script>
+  const app = new Vue({
+    el: '#app',
+    data: {
+      message: 'Rae是我儿子！'
+    },
+    methods: {
+      handleInput: function (event) {
+        this.message = event.target.value;
+      }
+    }
+  })
+</script>
+
+</body>
+</html>

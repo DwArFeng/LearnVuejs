@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:v-bind="http://www.w3.org/1999/xhtml">
+<head>
+  <meta charset="UTF-8">
+  <title>Title</title>
+</head>
+<body>
+
+<div id="app">
+  <!-- 1.checkbox单选框 -->
+  <h2>请仔细阅读用户协议</h2>
+  <label for="agreeLicense">
+    <input id="agreeLicense" type="checkbox" v-model="isAgreeLicense">同意协议
+  </label>
+  <h2>您选择的是: {{isAgreeLicense}}</h2>
+  当您同意之后，可以点击
+  <button v-bind:disabled="!isAgreeLicense">下一步</button>
+  <br>
+
+  <!-- 2.checkbox多选框 -->
+  <h2>请选择您的爱好</h2>
+  <label for="hobbit1">
+    <input id="hobbit1" type="checkbox" v-model="hobbies" value="篮球">篮球
+  </label>
+  <label for="hobbit2">
+    <input id="hobbit2" type="checkbox" v-model="hobbies" value="足球">足球
+  </label>
+  <label for="hobbit3">
+    <input id="hobbit3" type="checkbox" v-model="hobbies" value="乒乓球">乒乓球
+  </label>
+  <label for="hobbit4">
+    <input id="hobbit4" type="checkbox" v-model="hobbies" value="羽毛球">羽毛球
+  </label>
+  <h2>您的爱好是:{{hobbies}}</h2>
+</div>
+
+<script src="../js/vue.js"></script>
+<script>
+  const app = new Vue({
+    el: '#app',
+    data: {
+      message: 'Rae是我儿子！',
+      isAgreeLicense: false,
+      hobbies: []
+    }
+  })
+</script>
+
+</body>
+</html>

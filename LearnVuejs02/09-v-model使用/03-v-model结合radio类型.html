@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Title</title>
+</head>
+<body>
+
+<div id="app">
+  <label for="male">
+    <!-- id: 绑定label -->
+    <!-- name: name相同的单选框只有一个能被选中 -->
+    <!-- value: 单选框被选中时，向模型中赋的值 -->
+    <input id="male" name="gender" type="radio" v-model="gender" value="男">男
+  </label>
+  <label for="female">
+    <input id="female" name="gender" type="radio" v-model="gender" value="女">女
+  </label>
+  <h2 v-if="gender==''">未选择</h2>
+  <h2 v-else>{{gender}}</h2>
+</div>
+
+<script src="../js/vue.js"></script>
+<script>
+  const app = new Vue({
+    el: '#app',
+    data: {
+      //此处设置默认值为'男', 由于双向绑定的关系，页面也会将value为男的单选框选中。
+      gender: '男',
+    }
+  })
+</script>
+
+</body>
+</html>

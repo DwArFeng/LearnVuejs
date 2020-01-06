@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:v-on="http://www.w3.org/1999/xhtml">
+<head>
+  <meta charset="UTF-8">
+  <title>Title</title>
+  <style>
+    [v-cloak] {
+      display: none;
+    }
+  </style>
+</head>
+<body>
+
+<div id="app" v-cloak="">
+  <span v-if="userNameLogin">
+    <label for="userName">用户账号</label>
+    <!--Vue在渲染的时候，会尽可能的复用key值一样的空间，因此，如果想要使其不复用的话，则应该以不同的key进行命名。-->
+    <input id="userName" key="input_1" placeholder="用户账号" type="text">
+  </span>
+  <span v-else="userNameLogin">
+    <label for="email">用户邮箱</label>
+    <!--Vue在渲染的时候，会尽可能的复用key值一样的空间，因此，如果想要使其不复用的话，则应该以不同的key进行命名。-->
+    <input id="email" key="input_2" placeholder="用户邮箱" type="text">
+  </span>
+  <button v-on:click="changeState">切换类型</button>
+</div>
+
+<script src="../js/vue.js"></script>
+<script>
+  const app = new Vue({
+    el: '#app',
+    data: {
+      userNameLogin: true
+    },
+    methods: {
+      changeState: function () {
+        this.userNameLogin = !this.userNameLogin;
+      }
+    }
+  })
+</script>
+
+</body>
+</html>

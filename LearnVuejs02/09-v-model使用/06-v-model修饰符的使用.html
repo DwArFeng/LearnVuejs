@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Title</title>
+</head>
+<body>
+
+<div id="app">
+  <!-- 1.修饰符: lazy -->
+  <!-- 启用lazy时, 只有当用户按下回车或者控件失去焦点时, 才进行变量更新 -->
+  <label for="testLazy"></label>
+  <input id="testLazy" type="text" v-model.lazy="message">
+  <h2>{{message}}</h2>
+
+  <!-- 2.修饰符: number -->
+  <!-- 将type="number"的input的值绑定为number类型, 而不是文本类型的数字 -->
+  <label for="testNumber"></label>
+  <input id="testNumber" type="number" v-model.number="age">
+  <h2>{{typeof age}}</h2>
+
+  <!-- 3.修饰符: trim -->
+  <!-- 自动去除文本开头和结尾的修饰符 -->
+  <label for="testTrim"></label>
+  <input id="testTrim" type="text" v-model.trim="name">
+  <h2>{{name}}</h2>
+</div>
+
+<script src="../js/vue.js"></script>
+<script>
+  const app = new Vue({
+    el: '#app',
+    data: {
+      message: 'Rae是我儿子！',
+      age: 18,
+      name: '张三'
+    }
+  })
+</script>
+
+</body>
+</html>

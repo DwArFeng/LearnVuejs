@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:v-on="http://www.w3.org/1999/xhtml">
+<head>
+  <meta charset="UTF-8">
+  <title>Title</title>
+  <style>
+    [v-cloak] {
+      display: none;
+    }
+  </style>
+</head>
+<body>
+
+<div id="app" v-cloak="">
+  <span v-if="userNameLogin">
+    <label for="userName">用户账号</label>
+    <input id="userName" placeholder="用户账号" type="text">
+  </span>
+  <span v-else="userNameLogin">
+    <label for="email">用户邮箱</label>
+    <input id="email" placeholder="用户邮箱" type="text">
+  </span>
+  <button v-on:click="changeState">切换类型</button>
+</div>
+
+<script src="../js/vue.js"></script>
+<script>
+  const app = new Vue({
+    el: '#app',
+    data: {
+      userNameLogin: true
+    },
+    methods: {
+      changeState: function () {
+        this.userNameLogin = !this.userNameLogin;
+      }
+    }
+  })
+</script>
+
+</body>
+</html>

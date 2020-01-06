@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:v-bind="http://www.w3.org/1999/xhtml">
+<head>
+  <meta charset="UTF-8">
+  <title>Title</title>
+</head>
+<body>
+
+<div id="app">
+  <!-- 错误的做法: 这里不可以使用mustache语法 -->
+  <!-- <img src="{{imgUrl}}"> -->
+  <img v-bind:src="imgUrl"><br/>
+  <a v-bind:href="aHref">{{aDesc}}</a><br/>
+  <!-- 语法糖 -->
+  <a :href="aHref">{{aDesc}}</a>
+</div>
+
+<script src="../js/vue.js"></script>
+<script>
+  const app = new Vue({
+    el: '#app',
+    data: {
+      imgUrl: 'https://cn.vuejs.org/images/logo.png',
+      aHref: 'http://www.baidu.com',
+      aDesc: '百度一下'
+    }
+  })
+</script>
+
+</body>
+</html>

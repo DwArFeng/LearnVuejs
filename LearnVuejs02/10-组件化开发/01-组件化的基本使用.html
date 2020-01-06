@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Title</title>
+</head>
+<body>
+
+<div id="app">
+  <!-- 3.使用组件 -->
+  <!-- vue组件名和prop都可以用驼峰命名和短横线命名, 但html里面只能使用短横线 -->
+  <!-- js中的驼峰命名会自动转换成短横线命名 -->
+  <my-cpn></my-cpn>
+  <my-cpn></my-cpn>
+  <my-cpn></my-cpn>
+</div>
+
+<script src="../js/vue.js"></script>
+<script>
+  //1. 创建组件构造器对象
+  const cpnC = Vue.extend({
+    //Vue.extend()方法需要一个入口参数
+    //该入口参数为对象。
+    // ES6语法: 使用``来定义字符串, 此字符串可以换行
+    // 这个符号是 tab 键上面的那个键。
+    template: `
+      <div>
+      <h2>我是标题</h2>
+      <p>我是内容,哈哈哈哈哈</p>
+      <p>我是内容,呵呵呵呵呵</p>
+      </div>
+    `
+  });
+  //2. 注册组件
+  Vue.component('my-cpn', cpnC);
+
+  //创建Vue实例。
+  const app = new Vue({
+    el: '#app',
+    data: {
+      message: 'Rae是我儿子！'
+    }
+  })
+</script>
+
+</body>
+</html>

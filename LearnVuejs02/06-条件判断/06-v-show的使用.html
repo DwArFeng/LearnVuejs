@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Title</title>
+</head>
+<body>
+
+<div id="app">
+  <!-- v-show在不显示时，直接在DOM中删除了元素。 -->
+  <h2 id="aaa" v-if="visible">{{message}}</h2>
+  <!-- v-show在不显示时，在DOM上增加了display: none的样式，达到了不显示的效果，但本质上还在dom中。 -->
+  <h2 id="bbb" v-show="visible">{{message}}</h2>
+</div>
+
+<script src="../js/vue.js"></script>
+<script>
+  const app = new Vue({
+    el: '#app',
+    data: {
+      message: 'Rae是我儿子！',
+      visible: true
+    }
+  })
+</script>
+
+</body>
+</html>

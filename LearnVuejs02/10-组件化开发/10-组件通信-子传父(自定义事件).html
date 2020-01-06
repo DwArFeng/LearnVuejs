@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:v-on="http://www.w3.org/1999/xhtml">
+<head>
+  <meta charset="UTF-8">
+  <title>Title</title>
+</head>
+<body>
+
+<!-- 父组件模板 -->
+<div id="app">
+  <cpn v-on:item-click="handleClick"></cpn>
+</div>
+
+<!-- 子组件模板 -->
+<template id="cpn">
+  <div>
+    <button v-for="item in categories"
+            v-on:click="handleClick(item)">
+      {{item.name}}
+    </button>
+  </div>
+</template>
+
+<script src="../js/vue.js"></script>
+<script>
+  const cpn = {
+    template: '#cpn',
+    data: function () {
+      return {
+        categories: [
+          {id: 'id_01', name: '热门推荐'},
+          {id: 'id_02', name: '手机数码'},
+          {id: 'id_03', name: '家用家电'},
+          {id: 'id_04', name: '电脑办公'},
+        ]
+      }
+    },
+    methods: {
+      handleClick: function (item) {
+        // 使用$emit关键字向父组件发射事件。
+        this.$emit('item-click', item);
+      }
+    },
+    props: {}
+  };
+
+  const app = new Vue({
+    el: '#app',
+    data: {},
+    components: {
+      cpn: cpn
+    },
+    methods: {
+      handleClick: function (item) {
+        console.log('接收到了', item);
+      }
+    }
+  })
+</script>
+
+</body>
+</html>

@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Title</title>
+</head>
+<body>
+
+<div id="app">
+  <h2>{{fullName}}</h2>
+</div>
+
+<script src="../js/vue.js"></script>
+<script>
+  const app = new Vue({
+    el: '#app',
+    data: {
+      firstName: 'Pei',
+      lastName: 'Feng'
+    },
+    computed: {
+      // 这种写法是简写方式，完整写法如下:
+      // fullName: function () {
+      //   return this.firstName + this.lastName;
+      // }
+      fullName: {
+        get: function () {
+          return this.firstName + ' ' + this.lastName;
+        },
+        // set: function () {
+        //   // 在计算属性的情况下，一般是不写 set 方法的。
+        //   // 这种属性被称之为只读属性。
+        //   // 将 set 方法删除掉不写。
+        // }
+      }
+    }
+  })
+</script>
+
+</body>
+</html>

@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:v-bind="http://www.w3.org/1999/xhtml" xmlns:v-on="http://www.w3.org/1999/xhtml">
+<head>
+  <meta charset="UTF-8">
+  <title>Title</title>
+</head>
+<body>
+
+<div id="app">
+  <cpn v-bind:num1="num1" v-bind:num2="num2"
+       v-on:num1-change="num1Change" v-on:num2-change="num2Change"></cpn>
+</div>
+
+<template id="cpn">
+  <div>
+    <h2>props: {{num1}}</h2>
+    <h2>delegate: {{delegate_num1}}</h2>
+    <label>
+      <input type="text" v-model="delegate_num1">
+    </label>
+    <h2>props: {{num2}}</h2>
+    <h2>delegate: {{delegate_num2}}</h2>
+    <label>
+      <input type="text" v-model="delegate_num2">
+    </label>
+  </div>
+</template>
+
+<script src="../js/vue.js"></script>
+<script>
+  const app = new Vue({
+    el: '#app',
+    data: {
+      num1: 1,
+      num2: 0
+    },
+    components: {
+      cpn: {
+        template: '#cpn',
+        props: {
+          num1: {
+            type: Number,
+          },
+          num2: {
+            type: Number
+          }
+        },
+        data: function () {
+          return {
+            delegate_num1: this.num1,
+            delegate_num2: this.num2,
+          }
+        },
+        watch: {
+          delegate_num1(newValue) {
+            this.$emit("num1-change", this.delegate_num1);
+          },
+          delegate_num2(newValue) {
+            this.$emit("num2-change", this.delegate_num2);
+          }
+        }
+      }
+    },
+    methods: {
+      num1Change: function (num1) {
+        // 方法传入的参数类型默认为 String, 因此直接复制会报类型检查错误。
+        this.num1 = parseInt(num1);
+      },
+      num2Change: function (num2) {
+        this.num2 = parseInt(num2);
+      }
+    }
+  })
+</script>
+
+</body>
+</html>

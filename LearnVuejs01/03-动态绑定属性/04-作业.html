@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:v-bind="http://www.w3.org/1999/xhtml" xmlns:v-on="http://www.w3.org/1999/xhtml">
+<head>
+  <meta charset="UTF-8">
+  <title>Title</title>
+  <style>
+    *.active {
+      color: red;
+    }
+  </style>
+</head>
+<body>
+
+<div id="app">
+  <ul>
+    <li v-for="(item, index) in movies" v-bind:class="getClasses(index)" v-on:click="updateCurrentIndex(index)">
+      {{index + 1}}-{{item}}
+    </li>
+  </ul>
+</div>
+
+<script src="../js/vue.js"></script>
+<script>
+  const app = new Vue({
+    el: '#app',
+    data: {
+      movies: ['盗梦空间', '穆赫兰道', '上帝之城', '肖申克的救赎'],
+      currentIndex: 0
+    },
+    methods: {
+      updateCurrentIndex: function (index) {
+        this.currentIndex = index;
+      },
+      getClasses: function (index) {
+        return {active: this.currentIndex === index};
+      }
+    }
+  })
+</script>
+
+</body>
+</html>
