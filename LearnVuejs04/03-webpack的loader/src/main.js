@@ -14,3 +14,13 @@ import {age, height, name} from "./js/info";
 console.log(name);
 console.log(age);
 console.log(height);
+
+/*
+ * 使用CommonJS规范依赖CSS文件。
+ */
+require('./css/normal.css');
+
+/*
+ * 使用CommonJS规范依赖LESS文件。
+ */
+require('./css/special.less');
