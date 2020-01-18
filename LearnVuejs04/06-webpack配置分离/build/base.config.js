@@ -8,12 +8,11 @@ module.exports = {
   entry: './src/main.js',
   output: {
     //动态的获取路径，使用node的语法可以实现。
-    path: path.resolve(__dirname, 'dist'),
+    path: path.resolve(__dirname, '../dist'),
     filename: 'bundle.js',
     //使用了index插件后，index.html直接装配到dist文件夹中，因此这个配置就多余了。
     // publicPath: 'dist/'
   },
-  mode: 'development',
   module: {
     rules: [
       {
@@ -65,9 +64,4 @@ module.exports = {
       template: 'index.html'
     })
   ],
-  devServer: {
-    contentBase: './dist',
-    inline: true,
-    port: 8088
-  }
 };
