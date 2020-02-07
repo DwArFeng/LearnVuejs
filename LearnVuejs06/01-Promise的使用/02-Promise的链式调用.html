@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Title</title>
+</head>
+<body>
+
+<script>
+  //wrapped into
+  //网络请求: aaa -> 自己处理(10行代码)。
+  //处理: aaa111 -> 自己处理(10行代码)。
+  //处理: aaa111222 -> 自己处理。
+  new Promise((resolve, reject) => {
+    resolve('aaa');
+  }).then((res) => {
+    //1. 自己处理10行代码。
+    console.log(res, '第一层的10行处理代码');
+    //2. 对结果进行下一次处理。
+    //这是一种简写方式，Promise对象会对返回的结果进行Promise包装。
+    //只要观察then的入口参数的约束就可以理解。
+    return res + '111';
+  }).then(res => {
+    console.log(res, '第二次的10行处理代码');
+    //2. 对结果进行下一次处理。
+    return res + '222';
+  }).then(res => {
+    console.log(res, '第三次的处理代码');
+  });
+</script>
+
+</body>
+</html>
